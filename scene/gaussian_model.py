@@ -27,7 +27,7 @@ class GaussianModel:
         def build_covariance_from_scaling_rotation(scaling, scaling_modifier, rotation):
             L = build_scaling_rotation(scaling_modifier * scaling, rotation) # [b, 3, 3]
             actual_covariance = L @ L.transpose(1, 2) # [b, 3, 3]
-            symm = strip_symmetric(actual_covariance) 
+            symm = strip_symmetric(actual_covariance) # [b, 6]
             return symm
         
         self.scaling_activation = torch.exp
